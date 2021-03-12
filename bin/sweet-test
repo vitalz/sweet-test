@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-color_green="\n\e[1;32m"
-color_red="\n\e[1;31m"
-color_reset="\e[0m"
+# Use \033 or \x1B instead of \e to represent de <Esc> character:
+# Mac OS ships with an old version of Bash that does not support the \e escape character.
+color_green="\n\033[1;32m"
+color_red="\n\033[1;31m"
+color_reset="\033[0m"
 
 if swift test --enable-test-discovery
   then
