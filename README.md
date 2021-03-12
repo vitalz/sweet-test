@@ -8,8 +8,8 @@ It runs on Mac OS, Mac Docker, native Linux.
 
 There are examples on screenshots below.
 
-Success:  
+**Success**:  
 ![success](success.png)
 
-Failure:  
+**Failure**:  
 ![failure](failure.png)
