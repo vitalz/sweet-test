@@ -2,15 +2,26 @@
 
 # Use \033 or \x1B instead of \e to represent de <Esc> character:
 # Mac OS ships with an old version of Bash that does not support the \e escape character.
-color_green="\n\033[1;32m"
-color_red="\n\033[1;31m"
+color_green="\033[1;32m"
+color_red="\033[1;31m"
 color_reset="\033[0m"
+dash_line="--------------------------------------------------------"
+cpu=$(uname -p)
+motherboard=$(uname -m)
+platform="Platform:\n\tCPU: ${cpu}\n\tMotherboard: ${motherboard}"
+t1=$(date +%s)
 
 if swift test --enable-test-discovery
   then
-    echo -e "${color_green}ALL TESTS PASSED SUCCESSFULLY${color_reset}"
+    t2=$(date +%s)
+    total=$(($t2-$t1))
+    echo -e "${dash_line}\n${color_green}ALL TESTS PASSED SUCCESSFULLY${color_reset}\n${dash_line}"
+    echo -e $platform
+    echo -e "Total time: ${total}s"
+    echo $dash_line
     exit 0
   else
-    echo -e "${color_red}TESTS FAILED${color_reset}"
+    echo -e "${dash_line}\n${color_red}TESTS FAILED${color_reset}\n${dash_line}"
+    echo -e "${platform}\n${dash_line}"
     exit 1 # bash: A non-zero (1-255) exit status indicates failure; -1 is unknown status
 fi
